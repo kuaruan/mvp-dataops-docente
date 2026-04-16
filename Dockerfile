@@ -1,16 +1,8 @@
 FROM python:3.11-slim
-
 WORKDIR /app
-
-# Dependencias
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Copia del código
 COPY app ./app
 COPY artifacts ./artifacts
-
 EXPOSE 8000
-
-# Comando de arranque
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
